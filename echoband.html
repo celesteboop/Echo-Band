@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echoband Battery Check</title>
+    <style>
+        /* CSS is embedded here so you only need one file! */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #e6f7ff; /* Light Blue Background */
+            color: #1c1c1c;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007aff; /* iOS-like Blue */
+            margin-bottom: 20px;
+        }
+        .battery-icon {
+            font-size: 100px;
+            color: #4CAF50; /* Green */
+            margin-bottom: 10px;
+        }
+        .battery-percent {
+            font-size: 60px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .status {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .update-time {
+            color: #888;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Echoband Status</h1>
+    
+    <div class="battery-icon">🔋</div>
+    
+    <div id="batteryDisplay" class="battery-percent">88%</div>
+    
+    <p class="status">Connected & Operational</p>
+    
+    <button onclick="checkStatus()" style="padding: 10px 20px; background-color: #007aff; color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px;">
+        Refresh Status
+    </button>
+    
+    <p class="update-time">Last updated: <span id="time"></span></p>
+</div>
+
+<script>
+    // JavaScript embedded here for simplicity
+
+    function checkStatus() {
+        // Simulate a new battery level (e.g., between 50 and 99)
+        const newBattery = Math.floor(Math.random() * (99 - 50 + 1)) + 50;
+        
+        document.getElementById('batteryDisplay').textContent = newBattery + '%';
+        
+        // Update the time
+        const now = new Date();
+        document.getElementById('time').textContent = now.toLocaleTimeString();
+
+        // Optional: Change icon/color for demonstration
+        const icon = document.querySelector('.battery-icon');
+        const display = document.getElementById('batteryDisplay');
+        
+        let color = '#4CAF50';
+        let iconChar = '🔋';
+        
+        if (newBattery < 60) {
+            color = '#FFC107'; // Yellow
+        } else if (newBattery < 25) {
+            color = '#F44336'; // Red
+            iconChar = '🔴';
+        }
+
+        icon.style.color = color;
+        display.style.color = color;
+        icon.textContent = iconChar;
+    }
+
+    // Run the function once on load to set the initial time
+    document.addEventListener('DOMContentLoaded', checkStatus);
+
+</script>
+
+</body>
+</html>
